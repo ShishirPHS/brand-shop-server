@@ -27,6 +27,9 @@ async function run() {
     await client.connect();
 
     const productCollection = client.db("productDB").collection("product");
+    const advertisementCollection = client
+      .db("productDB")
+      .collection("advertisementImage");
 
     // get all product from database
     app.get("/brandedProduct", async (req, res) => {
@@ -41,6 +44,13 @@ async function run() {
       console.log(newProduct);
 
       const result = await productCollection.insertOne(newProduct);
+      res.send(result);
+    });
+
+    // get all ad data from database
+    app.get("/adImg", async (req, res) => {
+      const cursor = advertisementCollection.find();
+      const result = await cursor.toArray();
       res.send(result);
     });
 
