@@ -30,6 +30,7 @@ async function run() {
     const advertisementCollection = client
       .db("productDB")
       .collection("advertisementImage");
+    const cartCollection = client.db("productDB").collection("cart");
 
     // get all product from database
     app.get("/brandedProduct", async (req, res) => {
@@ -78,6 +79,15 @@ async function run() {
       console.log(newProduct);
 
       const result = await productCollection.insertOne(newProduct);
+      res.send(result);
+    });
+
+    // add to cart product
+    app.post("/productCart", async (req, res) => {
+      const newProduct = req.body;
+      console.log(newProduct);
+
+      const result = await cartCollection.insertOne(newProduct);
       res.send(result);
     });
 
