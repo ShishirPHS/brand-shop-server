@@ -91,6 +91,13 @@ async function run() {
       res.send(result);
     });
 
+    // get all product from cart collection
+    app.get("/cartProducts", async (req, res) => {
+      const cursor = cartCollection.find();
+      const result = await cursor.toArray();
+      res.send(result);
+    });
+
     // get all ad data from database
     app.get("/adImg", async (req, res) => {
       const cursor = advertisementCollection.find();
