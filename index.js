@@ -60,7 +60,6 @@ async function run() {
           brand: updatedProduct.brand,
           type: updatedProduct.type,
           price: updatedProduct.price,
-          description: updatedProduct.description,
           rating: updatedProduct.rating,
         },
       };
