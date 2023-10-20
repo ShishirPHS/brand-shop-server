@@ -98,6 +98,14 @@ async function run() {
       res.send(result);
     });
 
+    // delete
+    app.delete("/deleteFromCart/:id", async (req, res) => {
+      const id = req.params.id;
+      const query = { _id: id };
+      const result = await cartCollection.deleteOne(query);
+      res.send(result);
+    });
+
     // get all ad data from database
     app.get("/adImg", async (req, res) => {
       const cursor = advertisementCollection.find();
